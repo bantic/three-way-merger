@@ -1,0 +1,19 @@
+{
+  "name": "package-merger",
+  "version": "0.1.0",
+  "description": "Merges package.json files",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/"
+  },
+  "keywords": [
+    "package",
+    "merge"
+  ],
+  "author": "Cory Forsyth <cory.forsyth@gmail.com> (http://coryforsyth.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
