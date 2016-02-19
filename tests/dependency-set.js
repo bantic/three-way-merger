@@ -19,8 +19,8 @@ describe('Dependency Set', function() {
   describe('#contains(name)', function() {
     it('is true if the dependency is in the set', function() {
       var set = DependencySet.fromJSON(json.devDependencies);
-      expect(set.contains('mocha')).to.be.true
-      expect(set.contains('should')).to.be.true
+      expect(set.contains('mocha')).to.be.true;
+      expect(set.contains('should')).to.be.true;
       expect(set.contains('other')).to.be.false;
     });
   });

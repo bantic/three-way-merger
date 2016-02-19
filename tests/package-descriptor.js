@@ -20,7 +20,7 @@ describe('Package Descriptor', function() {
   };
 
   describe('#fromJSON', function() {
-    it('gets the correct number of dependencies and devDependencies', function() {
+    it('gets the correct number of deps', function() {
       var descriptor = PackageDescriptor.fromJSON(json);
 
       expect(descriptor.dependencies.length).to.equal(1);

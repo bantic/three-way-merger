@@ -3,7 +3,6 @@
 var expect = require('chai').expect;
 var Merge = require('../lib/merge');
 var DependencySet = require('../lib/dependency-set');
-var Dep = require('../lib/dependency-descriptor');
 
 function createMerge(json) {
   var source = DependencySet.fromJSON(json.source);
