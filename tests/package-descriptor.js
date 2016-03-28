@@ -26,5 +26,31 @@ describe('Package Descriptor', function() {
       expect(descriptor.dependencies.length).to.equal(1);
       expect(descriptor.devDependencies.length).to.equal(2);
     });
+
+    it('works without dependencies', function() {
+      var jsonWithoutDeps = {
+        name: '...',
+        devDependencies: {
+          'mocha': '2.3.0',
+          'should': '1.0'
+        }
+      };
+      var descriptor = PackageDescriptor.fromJSON(jsonWithoutDeps);
+      expect(descriptor.dependencies.length).to.equal(0);
+      expect(descriptor.devDependencies.length).to.equal(2);
+    });
+
+    it('works without devDependencies', function() {
+      var jsonWithoutDevDeps = {
+        name: '...',
+        dependencies: {
+          'mocha': '2.3.0',
+          'should': '1.0'
+        }
+      };
+      var descriptor = PackageDescriptor.fromJSON(jsonWithoutDevDeps);
+      expect(descriptor.dependencies.length).to.equal(2);
+      expect(descriptor.devDependencies.length).to.equal(0);
+    });
   });
 });
