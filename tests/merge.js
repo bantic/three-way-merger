@@ -69,7 +69,8 @@ describe('Merge', function() {
       expect(merge.change.length).to.equal(0);
 
       expect(merge.add.length).to.equal(1);
-      var dep = merge.add.get('other');
+      var dep = merge.add[0];
+      expect(dep.name).to.equal('other');
       expect(dep.version).to.equal('1.1');
     });
   });
@@ -121,7 +122,8 @@ describe('Merge', function() {
       expect(merge.add.length).to.equal(0);
 
       expect(merge.remove.length).to.equal(1);
-      var dep = merge.remove.get('should');
+      var dep = merge.remove[0];
+      expect(dep.name).to.equal('should');
       expect(dep.version).to.equal('1.0');
     });
   });
@@ -172,7 +174,7 @@ describe('Merge', function() {
       expect(merge.add.length).to.equal(0);
       expect(merge.change.length).to.equal(1);
 
-      var dep = merge.change.get('should');
+      var dep = merge.change[0];
       expect(dep.version).to.equal('1.1');
       expect(dep.fromVersion).to.equal('1.0');
     });
@@ -201,7 +203,7 @@ describe('Merge', function() {
       expect(merge.add.length).to.equal(0);
       expect(merge.change.length).to.equal(1);
 
-      var dep = merge.change.get('should');
+      var dep = merge.change[0];
       expect(dep.version).to.equal('0.9');
       expect(dep.fromVersion).to.equal('1.1');
     });
