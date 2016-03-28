@@ -180,6 +180,32 @@ describe('Merge', function() {
     });
   });
 
+
+  describe('not present in source, present in ours and, upgraded in theirs', function() {
+    var json = {
+      source: {
+      },
+      ours: {
+        'foo-package': '1.1.1',
+      },
+      theirs: {
+        'foo-package': '2.2.2',
+      }
+    };
+
+    it('marked for change', function() {
+      var merge = createMerge(json);
+
+      expect(merge.remove.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+      expect(merge.change.length).to.equal(1);
+
+      var dep = merge.change[0];
+      expect(dep.version).to.equal('2.2.2');
+      expect(dep.fromVersion).to.equal('1.1.1');
+    });
+  });
+
   describe('present in ours, downgraded in theirs', function() {
     var json = {
       source: {
