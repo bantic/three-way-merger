@@ -30,7 +30,7 @@ var theirs = {
   }
 };
 
-var result = new PackageMerger({source: source, ours: ours, theirs: theirs});
+var result = PackageMerger.merge({source: source, ours: ours, theirs: theirs});
 
 console.log(result.devDependencies.add);
 // [{name: 'd', version: '1.0'}]  // need to add dep on d@1.0
