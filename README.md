@@ -2,7 +2,7 @@ Used to figure out the minimum changes needed to be made to create a 3-way merge
 
 ## usage
 
-```
+```javascript
 var PackageMerger = require('package-merger');
 
 // e.g., the blueprinted package.json from the version of ember-cli eare upgrading *from*:
