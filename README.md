@@ -34,6 +34,7 @@ var result = PackageMerger.merge({source: source, ours: ours, theirs: theirs});
 
 console.log(result.devDependencies.add);
 // [{name: 'd', version: '1.0'}]  // need to add dep on d@1.0
+// dep 'b' is not listed as requiring addition because user explicitly removed it from `ours` devDependencies
 
 console.log(result.devDependencies.remove);
 // []  // no deps to remove
