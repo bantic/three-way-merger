@@ -1,12 +1,12 @@
 /* global describe, it */
 
 var expect = require('chai').expect;
-var PackageMerger = require('../index');
+var Merger = require('../index');
 
-describe('Package Merger', function() {
+describe('Three Way Merger', function() {
   describe('basic', function() {
     it('exists', function() {
-      expect(PackageMerger).to.be.ok;
+      expect(Merger).to.be.ok;
     });
   });
 
@@ -52,19 +52,16 @@ describe('Package Merger', function() {
         }
       };
 
-      var merge = PackageMerger.merge({
+      var merge = Merger.merge({
         source: packages.source,
         ours: packages.ours,
         theirs: packages.theirs
       });
 
-      console.log('MERGE:', merge);
-
       expect(merge.dependencies).to.be.ok;
       expect(merge.devDependencies).to.be.ok;
 
       expect(merge.dependencies.add.length).to.equal(1);
-      console.log('ADD!!',merge.dependencies.add);
       expect(merge.dependencies.add[0].name).to.equal('c3');
       expect(merge.dependencies.add[0].version).to.equal('1.0');
 
