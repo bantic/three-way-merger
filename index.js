@@ -1,2 +1,2 @@
-var PackageMerger = require('./lib/package-merger');
-module.exports = PackageMerger;
+var Merger = require('./lib/three-way-merger');
+module.exports = Merger;

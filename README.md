@@ -3,7 +3,7 @@ Used to figure out the minimum changes needed to be made to create a 3-way merge
 ## usage
 
 ```javascript
-var PackageMerger = require('package-merger');
+var Merger = require('three-way-merger');
 
 // e.g., the blueprinted package.json from the version of ember-cli eare upgrading *from*:
 var source = {
@@ -30,7 +30,7 @@ var theirs = {
   }
 };
 
-var result = PackageMerger.merge({source: source, ours: ours, theirs: theirs});
+var result = Merger.merge({source: source, ours: ours, theirs: theirs});
 
 console.log(result.devDependencies.add);
 // [{name: 'd', version: '1.0'}]  // need to add dep on d@1.0

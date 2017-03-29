@@ -1,10 +1,10 @@
 {
-  "name": "package-merger",
+  "name": "three-way-merge",
   "version": "0.2.0",
   "description": "Merges package.json files",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha tests/"
+    "test": "mocha tests"
   },
   "keywords": [
     "package",
