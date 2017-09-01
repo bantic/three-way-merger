@@ -1,3 +1,8 @@
+# three-way-merger
+
+[![npm version](https://badge.fury.io/js/three-way-merger.svg)](https://badge.fury.io/js/ember-cli-update)
+[![Build Status](https://travis-ci.org/bantic/three-way-merger.svg?branch=master)](https://travis-ci.org/bantic/three-way-merger)
+
 Used to figure out the minimum changes needed to be made to create a 3-way merge of dependencies (for an app's `devDependencies` or `dependencies`, e.g.).
 
 ## usage
