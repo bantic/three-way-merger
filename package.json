@@ -6,6 +6,10 @@
   "scripts": {
     "test": "mocha tests"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bantic/three-way-merger.git"
+  },
   "keywords": [
     "package",
     "merge"
