@@ -10,7 +10,7 @@ Used to figure out the minimum changes needed to be made to create a 3-way merge
 ```javascript
 var Merger = require('three-way-merger');
 
-// e.g., the blueprinted package.json from the version of ember-cli eare upgrading *from*:
+// e.g., the blueprinted package.json from the version of ember-cli we are upgrading *from*:
 var source = {
   devDependencies: {
     a: '1.0',
