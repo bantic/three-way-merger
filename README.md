@@ -15,7 +15,8 @@ var source = {
   devDependencies: {
     a: '1.0',
     b: '2.0',
-    e: '1.0'
+    e: '1.0',
+    f: '1.0'
   }
 };
 
@@ -24,7 +25,8 @@ var ours = {
     a: '1.0',
     // b: '2.0', // user removed dep on 'b'
     c: '3.0', // and added dep on 'c'
-    e: '1.0'
+    e: '1.0',
+    f: '2.0'  // user updated independently to latest
   }
 };
 
@@ -34,7 +36,8 @@ var theirs = {
     a: '1.5', // a was bumped
     b: '2.5', // b was bumped
     d: '1.0', // ember-cli introduced new dep on d
-    // e: '1.0' // e was removed
+    // e: '1.0', // e was removed
+    f: '1.5'  // f was bumped, but `ours` is newer so ignore
   }
 };
 
@@ -49,11 +52,11 @@ console.log(result.devDependencies.remove);
 
 console.log(result.devDependencies.change);
 // [{name: 'a', version: '1.5', fromVersion: '1.0'}]  // need to update a@1.0 to a@1.5
+// dep 'f' is not listed as requiring change because user explicitly updated it past `theirs` version
 
 ```
 
 ## to do
 
- * use semver to determine whether change is upgrade or downgrade
  * documentation
  * create ember addon to consume this output

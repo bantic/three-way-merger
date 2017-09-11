@@ -196,16 +196,12 @@ describe('Merge', function() {
       }
     };
 
-    it('marked for change', function() {
+    it('not marked for change', function() {
       var merge = createMerge(json);
 
       expect(merge.remove.length).to.equal(0);
       expect(merge.add.length).to.equal(0);
-      expect(merge.change.length).to.equal(1);
-
-      var dep = merge.change[0];
-      expect(dep.version).to.equal('1.1');
-      expect(dep.fromVersion).to.equal('1.2');
+      expect(merge.change.length).to.equal(0);
     });
   });
 
@@ -250,16 +246,12 @@ describe('Merge', function() {
       }
     };
 
-    it('marked for change', function() {
+    it('not marked for change', function() {
       var merge = createMerge(json);
 
       expect(merge.remove.length).to.equal(0);
       expect(merge.add.length).to.equal(0);
-      expect(merge.change.length).to.equal(1);
-
-      var dep = merge.change[0];
-      expect(dep.version).to.equal('0.9');
-      expect(dep.fromVersion).to.equal('1.1');
+      expect(merge.change.length).to.equal(0);
     });
   });
 });
