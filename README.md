@@ -1,5 +1,7 @@
 # three-way-merger
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bantic/three-way-merger.svg)](https://greenkeeper.io/)
+
 [![npm version](https://badge.fury.io/js/three-way-merger.svg)](https://badge.fury.io/js/three-way-merger)
 [![Build Status](https://travis-ci.org/bantic/three-way-merger.svg?branch=master)](https://travis-ci.org/bantic/three-way-merger)
 
