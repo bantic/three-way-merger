@@ -14,15 +14,17 @@ var Merger = require('three-way-merger');
 var source = {
   devDependencies: {
     a: '1.0',
-    b: '2.0'
+    b: '2.0',
+    e: '1.0'
   }
 };
 
 var ours = {
   devDependencies: {
     a: '1.0',
-    // b: '2.0' // user removed dep on 'b'
+    // b: '2.0', // user removed dep on 'b'
     c: '3.0', // and added dep on 'c'
+    e: '1.0'
   }
 };
 
@@ -31,7 +33,8 @@ var theirs = {
   devDependencies: {
     a: '1.5', // a was bumped
     b: '2.5', // b was bumped
-    d: '1.0'  // ember-cli introduced new dep on d
+    d: '1.0', // ember-cli introduced new dep on d
+    // e: '1.0' // e was removed
   }
 };
 
@@ -42,7 +45,7 @@ console.log(result.devDependencies.add);
 // dep 'b' is not listed as requiring addition because user explicitly removed it from `ours` devDependencies
 
 console.log(result.devDependencies.remove);
-// []  // no deps to remove
+// [{name: 'e', version: '1.0'}]  // need to remove dep on e@1.0
 
 console.log(result.devDependencies.change);
 // [{name: 'a', version: '1.5', fromVersion: '1.0'}]  // need to update a@1.0 to a@1.5
