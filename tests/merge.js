@@ -126,6 +126,63 @@ describe('Merge', function() {
     });
   });
 
+  describe('added to both, ours is fork', function() {
+    var json = {
+      source: {
+        'mocha': '2.3.0',
+        'should': '1.0'
+      },
+      ours: {
+        'mocha': '2.3.0',
+        'should': '1.0',
+        'other': 'github:foo/a#bar'
+      },
+      theirs: {
+        'mocha': '2.3.0',
+        'should': '1.0',
+        'other': '1.0'
+      }
+    };
+
+    it('includes no added deps', function() {
+      var merge = createMerge(json);
+      expect(merge.remove.length).to.equal(0);
+      expect(merge.change.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+    });
+  });
+
+  describe('added to both, theirs is fork', function() {
+    var json = {
+      source: {
+        'mocha': '2.3.0',
+        'should': '1.0'
+      },
+      ours: {
+        'mocha': '2.3.0',
+        'should': '1.0',
+        'other': '1.1'
+      },
+      theirs: {
+        'mocha': '2.3.0',
+        'should': '1.0',
+        'other': 'github:foo/a#bar'
+      }
+    };
+
+    it('marked for change', function() {
+      var merge = createMerge(json);
+
+      expect(merge.remove.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+      expect(merge.change.length).to.equal(1);
+
+      var dep = merge.change[0];
+      expect(dep.version).to.equal('github:foo/a#bar');
+      expect(dep.fromVersion).to.equal('1.1');
+    });
+  });
+
   describe('removed from theirs but in ours', function() {
     var json = {
       source: {
