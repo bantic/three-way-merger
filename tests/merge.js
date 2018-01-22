@@ -100,6 +100,32 @@ describe('Merge', function() {
     });
   });
 
+  describe('added to both, ours newer', function() {
+    var json = {
+      source: {
+        'mocha': '2.3.0',
+        'should': '1.0'
+      },
+      ours: {
+        'mocha': '2.3.0',
+        'should': '1.0',
+        'other': '1.1'
+      },
+      theirs: {
+        'mocha': '2.3.0',
+        'should': '1.0',
+        'other': '1.0'
+      }
+    };
+
+    it('includes no added deps', function() {
+      var merge = createMerge(json);
+      expect(merge.remove.length).to.equal(0);
+      expect(merge.change.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+    });
+  });
+
   describe('removed from theirs but in ours', function() {
     var json = {
       source: {
