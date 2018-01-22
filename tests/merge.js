@@ -180,6 +180,59 @@ describe('Merge', function() {
     });
   });
 
+  describe('ours uses git fork, use ours', function() {
+    var json = {
+      source: {
+        'mocha': '2.3.0',
+        'should': '1.0'
+      },
+      ours: {
+        'mocha': '2.3.0',
+        'should': 'github:foo/a#bar'
+      },
+      theirs: {
+        'mocha': '2.3.0',
+        'should': '1.1'
+      }
+    };
+
+    it('not marked for change', function() {
+      var merge = createMerge(json);
+      expect(merge.change.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+      expect(merge.remove.length).to.equal(0);
+    });
+  });
+
+  describe('theirs uses git fork, use theirs', function() {
+    var json = {
+      source: {
+        'mocha': '2.3.0',
+        'should': '1.0'
+      },
+      ours: {
+        'mocha': '2.3.0',
+        'should': '1.0'
+      },
+      theirs: {
+        'mocha': '2.3.0',
+        'should': 'github:foo/a#bar'
+      }
+    };
+
+    it('marked for change', function() {
+      var merge = createMerge(json);
+
+      expect(merge.remove.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+      expect(merge.change.length).to.equal(1);
+
+      var dep = merge.change[0];
+      expect(dep.version).to.equal('github:foo/a#bar');
+      expect(dep.fromVersion).to.equal('1.0');
+    });
+  });
+
   describe('upgraded in theirs, ours is higher', function() {
     var json = {
       source: {
