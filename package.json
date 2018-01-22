@@ -1,6 +1,6 @@
 {
   "name": "three-way-merger",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Merges package.json files",
   "main": "index.js",
   "scripts": {
