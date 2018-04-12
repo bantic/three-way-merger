@@ -24,4 +24,16 @@ describe('Dependency Set', function() {
       expect(set.contains('other')).to.be.false;
     });
   });
+
+  describe('#remove(dep)', function() {
+    it('removes from array and decrements length', function() {
+      var set = DependencySet.fromJSON(json.devDependencies);
+
+      var dep = set.remove('mocha');
+
+      expect(dep.name).to.equal('mocha');
+      expect(set.toArray().length).to.equal(1);
+      expect(set.length).to.equal(1);
+    });
+  });
 });
