@@ -243,4 +243,36 @@ describe('matchAcrossBoundaries', function() {
     expect(merger.source.devDependencies.get('b')).to.be.undefined;
     expect(merger.source.devDependencies.get('c')).to.be.undefined;
   });
+
+  it('tracks removals in other group', function() {
+    var packages = {
+      source: {
+        dependencies: {
+        },
+        devDependencies: {
+          a: '1.0',
+        }
+      },
+      ours: {
+        dependencies: {
+          a: '1.0',
+        },
+        devDependencies: {
+        }
+      },
+      theirs: {
+        dependencies: {
+        },
+        devDependencies: {
+        }
+      }
+    };
+
+    var merger = new Merger(packages);
+
+    matchAcrossBoundaries(merger);
+
+    expect(merger.source.dependencies.get('a').version).to.equal('1.0');
+    expect(merger.source.devDependencies.get('a')).to.be.undefined;
+  });
 });
