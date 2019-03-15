@@ -199,4 +199,48 @@ describe('matchAcrossBoundaries', function() {
 
     expect(merger.ours.peerDependencies.get('a').version).to.equal('1.0');
   });
+
+  it('doesn\'t skip any deps', function() {
+    var packages = {
+      source: {
+        dependencies: {
+        },
+        devDependencies: {
+          a: '1.0',
+          b: '1.0',
+          c: '1.0',
+        }
+      },
+      ours: {
+        dependencies: {
+          a: '1.0',
+          b: '1.0',
+          c: '1.0',
+        },
+        devDependencies: {
+        }
+      },
+      theirs: {
+        dependencies: {
+        },
+        devDependencies: {
+          a: '2.0',
+          b: '2.0',
+          c: '2.0',
+        }
+      }
+    };
+
+    var merger = new Merger(packages);
+
+    matchAcrossBoundaries(merger);
+
+    expect(merger.source.dependencies.get('a').version).to.equal('1.0');
+    expect(merger.source.dependencies.get('b').version).to.equal('1.0');
+    expect(merger.source.dependencies.get('c').version).to.equal('1.0');
+
+    expect(merger.source.devDependencies.get('a')).to.be.undefined;
+    expect(merger.source.devDependencies.get('b')).to.be.undefined;
+    expect(merger.source.devDependencies.get('c')).to.be.undefined;
+  });
 });
