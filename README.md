@@ -61,4 +61,3 @@ console.log(result.devDependencies.change);
 ## to do
 
  * documentation
- * create ember addon to consume this output
