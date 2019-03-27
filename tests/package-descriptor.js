@@ -20,9 +20,6 @@ describe('Package Descriptor', function() {
     peerDependencies: {
       'bar': '1.2.3'
     },
-    bundledDependencies: {
-      'baz': '1.2.3'
-    },
     optionalDependencies: {
       'foo': '1.2.3'
     }
@@ -35,7 +32,6 @@ describe('Package Descriptor', function() {
       expect(descriptor.dependencies.length).to.equal(1);
       expect(descriptor.devDependencies.length).to.equal(2);
       expect(descriptor.peerDependencies.length).to.equal(1);
-      expect(descriptor.bundledDependencies.length).to.equal(1);
       expect(descriptor.optionalDependencies.length).to.equal(1);
     });
 

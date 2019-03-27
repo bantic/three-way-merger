@@ -27,9 +27,6 @@ describe('Three Way Merger', function() {
           },
           peerDependencies: {
             h: '1.0'
-          },
-          bundledDependencies: {
-            i: '1.0'
           }
         },
         ours: {
@@ -44,9 +41,6 @@ describe('Three Way Merger', function() {
             e: '2.5',
             f: '3.0',
             f2: '1.0'
-          },
-          bundledDependencies: {
-            i: '1.0'
           },
           optionalDependencies: {
             g: '1.0'
@@ -82,7 +76,6 @@ describe('Three Way Merger', function() {
       expect(merge.dependencies).to.be.ok;
       expect(merge.devDependencies).to.be.ok;
       expect(merge.peerDependencies).to.be.ok;
-      expect(merge.bundledDependencies).to.be.ok;
       expect(merge.optionalDependencies).to.be.ok;
 
       expect(merge.dependencies.add.length).to.equal(1);
@@ -101,11 +94,6 @@ describe('Three Way Merger', function() {
       expect(merge.peerDependencies.add.length).to.equal(0);
       expect(merge.peerDependencies.remove.length).to.equal(0);
       expect(merge.peerDependencies.change.length).to.equal(0);
-
-      expect(merge.bundledDependencies.add.length).to.equal(0);
-      expect(merge.bundledDependencies.remove.length).to.equal(1);
-      expect(merge.bundledDependencies.remove[0].name).to.equal('i');
-      expect(merge.bundledDependencies.change.length).to.equal(0);
 
       expect(merge.optionalDependencies.add.length).to.equal(0);
       expect(merge.optionalDependencies.remove.length).to.equal(0);
