@@ -84,6 +84,8 @@ describe('Three Way Merger', function() {
       expect(merge.dependencies.remove.length).to.equal(1);
       expect(merge.dependencies.remove[0].name).to.equal('a');
       expect(merge.dependencies.change.length).to.equal(1);
+      expect(merge.dependencies.change[0].name).to.equal('j');
+      expect(merge.dependencies.change[0].version).to.equal('2.0');
 
       expect(merge.devDependencies.add.length).to.equal(0);
       expect(merge.devDependencies.remove.length).to.equal(0);
