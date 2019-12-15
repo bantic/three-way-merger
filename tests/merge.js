@@ -263,6 +263,46 @@ describe('Merge', function() {
     });
   });
 
+  describe('present in ours, upgraded in theirs, but keep our hint', function() {
+    var json = {
+      source: {
+        'a': '1',
+        'b': '^1'
+      },
+      ours: {
+        'a': '^1',
+        'b': '~1',
+        'c': '^1'
+      },
+      theirs: {
+        'a': '2',
+        'b': '2',
+        'c': '2'
+      }
+    };
+
+    it('marked for change', function() {
+      var merge = createMerge(json);
+
+      expect(merge.remove.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+      expect(merge.change.length).to.equal(3);
+
+      var dep = merge.change[0];
+      expect(dep.name).to.equal('c');
+      expect(dep.version).to.equal('2');
+      expect(dep.fromVersion).to.equal('^1');
+      var dep = merge.change[1];
+      expect(dep.name).to.equal('a');
+      expect(dep.version).to.equal('^2');
+      expect(dep.fromVersion).to.equal('^1');
+      var dep = merge.change[2];
+      expect(dep.name).to.equal('b');
+      expect(dep.version).to.equal('2');
+      expect(dep.fromVersion).to.equal('~1');
+    });
+  });
+
   describe('ours uses git fork, use ours', function() {
     var json = {
       source: {
