@@ -430,4 +430,29 @@ describe('Merge', function() {
       expect(merge.change.length).to.equal(0);
     });
   });
+
+  describe('handles infinite range', function() {
+    var json = {
+      source: {
+        'mocha': '2.3.0',
+        'should': '1.1'
+      },
+      ours: {
+        'mocha': '2.3.0',
+        'should': '1.1'
+      },
+      theirs: {
+        'mocha': '',
+        'should': '*'
+      }
+    };
+
+    it('not marked for change', function() {
+      var merge = createMerge(json);
+
+      expect(merge.remove.length).to.equal(0);
+      expect(merge.add.length).to.equal(0);
+      expect(merge.change.length).to.equal(0);
+    });
+  });
 });
