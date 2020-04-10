@@ -266,21 +266,24 @@ describe('Merge', function() {
   describe('present in ours, upgraded in theirs, but keep our hint', function() {
     var json = {
       source: {
-        'a': '1',
-        'b': '^1',
-        'd': '~1'
+        'a': '1.0.0',
+        'b': '^1.0.0',
+        'd': '~1.0.0',
+        'e': '>1.0.0'
       },
       ours: {
-        'a': '^1',
-        'b': '~1',
-        'c': '^1',
-        'd': '1'
+        'a': '^1.0.0',
+        'b': '~1.0.0',
+        'c': '^1.0.0',
+        'd': '1.0.0',
+        'e': '1.0.0'
       },
       theirs: {
-        'a': '2',
-        'b': '2',
-        'c': '2',
-        'd': '~2'
+        'a': '2.0.0',
+        'b': '2.0.0',
+        'c': '2.0.0',
+        'd': '~2.0.0',
+        'e': '>2.0.0'
       }
     };
 
@@ -289,24 +292,28 @@ describe('Merge', function() {
 
       expect(merge.remove.length).to.equal(0);
       expect(merge.add.length).to.equal(0);
-      expect(merge.change.length).to.equal(4);
+      expect(merge.change.length).to.equal(5);
 
       var dep = merge.change[0];
       expect(dep.name).to.equal('c');
-      expect(dep.version).to.equal('2');
-      expect(dep.fromVersion).to.equal('^1');
+      expect(dep.version).to.equal('2.0.0');
+      expect(dep.fromVersion).to.equal('^1.0.0');
       var dep = merge.change[1];
       expect(dep.name).to.equal('a');
-      expect(dep.version).to.equal('^2');
-      expect(dep.fromVersion).to.equal('^1');
+      expect(dep.version).to.equal('^2.0.0');
+      expect(dep.fromVersion).to.equal('^1.0.0');
       var dep = merge.change[2];
       expect(dep.name).to.equal('b');
-      expect(dep.version).to.equal('2');
-      expect(dep.fromVersion).to.equal('~1');
+      expect(dep.version).to.equal('2.0.0');
+      expect(dep.fromVersion).to.equal('~1.0.0');
       var dep = merge.change[3];
       expect(dep.name).to.equal('d');
-      expect(dep.version).to.equal('2');
-      expect(dep.fromVersion).to.equal('1');
+      expect(dep.version).to.equal('2.0.0');
+      expect(dep.fromVersion).to.equal('1.0.0');
+      var dep = merge.change[4];
+      expect(dep.name).to.equal('e');
+      expect(dep.version).to.equal('>2.0.0');
+      expect(dep.fromVersion).to.equal('1.0.0');
     });
   });
 
