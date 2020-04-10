@@ -267,17 +267,20 @@ describe('Merge', function() {
     var json = {
       source: {
         'a': '1',
-        'b': '^1'
+        'b': '^1',
+        'd': '~1'
       },
       ours: {
         'a': '^1',
         'b': '~1',
-        'c': '^1'
+        'c': '^1',
+        'd': '1'
       },
       theirs: {
         'a': '2',
         'b': '2',
-        'c': '2'
+        'c': '2',
+        'd': '~2'
       }
     };
 
@@ -286,7 +289,7 @@ describe('Merge', function() {
 
       expect(merge.remove.length).to.equal(0);
       expect(merge.add.length).to.equal(0);
-      expect(merge.change.length).to.equal(3);
+      expect(merge.change.length).to.equal(4);
 
       var dep = merge.change[0];
       expect(dep.name).to.equal('c');
@@ -300,6 +303,10 @@ describe('Merge', function() {
       expect(dep.name).to.equal('b');
       expect(dep.version).to.equal('2');
       expect(dep.fromVersion).to.equal('~1');
+      var dep = merge.change[3];
+      expect(dep.name).to.equal('d');
+      expect(dep.version).to.equal('2');
+      expect(dep.fromVersion).to.equal('1');
     });
   });
 
